@@ -47,6 +47,13 @@ view: inventory_items {
     sql: ${TABLE}.sold_at ;;
   }
 
+  dimension_group: duration {
+    type: duration
+    sql_start: ${created_date} ;;  # often this is a single database column
+    sql_end: ${sold_date} ;;  # often this is a single database column
+    intervals: [day] # valid intervals described
+  }
+
   measure: count {
     type: count
     drill_fields: [id, products.id, products.item_name, order_items.count]
