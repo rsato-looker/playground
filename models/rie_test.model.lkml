@@ -26,13 +26,8 @@ explore: events {
 
 explore: ints {}
 
-explore: inventory_items {
-  join: products {
-    type: left_outer
-    sql_on: ${inventory_items.product_id} = ${products.id} ;;
-    relationship: many_to_one
-  }
-}
+explore: inventory_items { hidden: yes}
+
 
 explore: order_items {
   join: orders {
