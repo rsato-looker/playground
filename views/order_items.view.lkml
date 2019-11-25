@@ -37,6 +37,11 @@ view: order_items {
   dimension: sale_price {
     type: number
     sql: ${TABLE}.sale_price ;;
+    html: {% if {{value}} > 50 %}
+          <b><font color="pink">{{value}}</font></b>
+          {% else %}
+          <font color="blue">{{value}}</font>
+          {% endif %};;
   }
 
   measure: count {
