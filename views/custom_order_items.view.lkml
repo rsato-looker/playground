@@ -2,18 +2,20 @@ view: custom_order_items {
   derived_table: {
     sql:
       SELECT
-        COUNT(*) AS order_items_count
+        id,
+        SUM(retail_price) AS sum_retail
       FROM
-        order_items ;;
+        public.products ;;
   }
-  dimension: order_items_count {
+
+  dimension: sum_retail {
     type: number
-    sql: ${TABLE}."order_items_count" ;;
+    sql: ${TABLE}.sum_retail ;;
   }
 
   measure: average_value {
     type: average
-    sql: ${order_items_count} ;;
+    sql: ${sum_retail} ;;
   }
 }
 
