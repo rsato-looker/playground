@@ -52,4 +52,27 @@ view: products {
     type: sum
     sql: ${retail_price} ;;
   }
+  # if i do this way, drill down won't work
+  measure: count_category {
+    type: sum
+    sql:
+    case
+    when ${category} like '%Sleep%Lounge%'
+    then 1
+    else 0
+    end;;
+  }
+  # But in this way, drill down will work
+  measure: count_category2 {
+    type: count_distinct
+    sql: ${id} ;;
+    filters: {
+      field: category
+      value: "%Pants%"
+    }
+    drill_fields: [category]
+  }
+
+
+
 }

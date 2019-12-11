@@ -20,6 +20,7 @@ view: orders {
       year
     ]
     sql: ${TABLE}.created_at ;;
+    html: <p style="color:blue">{{value}}</p> ;;
   }
 
   dimension: status {

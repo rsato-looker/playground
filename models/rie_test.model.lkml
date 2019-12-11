@@ -53,6 +53,12 @@ explore: order_items {
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
+
+  join: derived_table_test {
+    type: left_outer
+    sql_on: ${inventory_items.product_id} = ${derived_table_test.products_id} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: orders {
@@ -82,5 +88,3 @@ explore: user_data {
 explore: users {}
 
 explore: users_nn {}
-
-explore: custom_order_items {}
