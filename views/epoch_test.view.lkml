@@ -1,5 +1,5 @@
 view: epoch_test {
-  sql_table_name: demo_db.epochTest ;;
+  sql_table_name: demo_db2.epochTest ;;
 
   dimension: epoch {
     type: number

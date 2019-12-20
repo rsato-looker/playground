@@ -1,5 +1,5 @@
 view: products {
-  sql_table_name: demo_db.products ;;
+  sql_table_name: demo_db2.products ;;
   drill_fields: [id]
 
   dimension: id {
@@ -10,6 +10,12 @@ view: products {
 
   dimension: brand {
     type: string
+    #html: <b><a href="https://www.google.com/search?q={{value}}">{{ value }}</a></b> ;;
+     link: {
+       label: "Google brand name"
+       url: "https://www.google.com/"
+       icon_url: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+     }
     sql: ${TABLE}.brand ;;
   }
 

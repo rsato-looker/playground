@@ -1,5 +1,5 @@
 view: users {
-  sql_table_name: demo_db.users ;;
+  sql_table_name: demo_db2.users ;;
   drill_fields: [id]
 
   dimension: id {
@@ -72,6 +72,20 @@ view: users {
     type: count
     drill_fields: [detail*]
   }
+
+  measure: count_states {
+    type: count_distinct
+    sql: ${state} ;;
+  }
+
+  measure: percentage_states {
+    type: number
+    sql: ${count_states}/50 ;;
+    #value_format_name: percent_0
+    #value_format: "[>=100000]0.0,,\"M\";[>=1000]0.0,\"K\";[<1]0.0;0"
+    #value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.00,\"K\";$0.00"
+  }
+
 
   # ----- Sets of fields for drilling ------
   set: detail {

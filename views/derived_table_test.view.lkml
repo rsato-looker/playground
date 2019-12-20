@@ -3,7 +3,7 @@ view: derived_table_test {
     sql: SELECT
         products.id  AS `products.id`,
         COALESCE(SUM(products.retail_price ), 0) AS `products.total`
-      FROM demo_db.products  AS products
+      FROM demo_db2.products  AS products
        ;;
   }
 

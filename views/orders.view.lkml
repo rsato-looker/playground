@@ -1,5 +1,5 @@
 view: orders {
-  sql_table_name: demo_db.orders ;;
+  sql_table_name: demo_db2.orders ;;
   drill_fields: [id]
 
   dimension: id {
@@ -38,4 +38,10 @@ view: orders {
     type: count
     drill_fields: [id, users.id, users.first_name, users.last_name, order_items.count]
   }
+
+  measure: count_users {
+    type: count_distinct
+    sql: ${user_id} ;;
+  }
+
 }

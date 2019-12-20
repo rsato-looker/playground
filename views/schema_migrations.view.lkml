@@ -1,5 +1,5 @@
 view: schema_migrations {
-  sql_table_name: demo_db.schema_migrations ;;
+  sql_table_name: demo_db2.schema_migrations ;;
 
   dimension: filename {
     type: string

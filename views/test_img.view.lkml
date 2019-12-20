@@ -1,5 +1,5 @@
 view: test_img {
-  sql_table_name: demo_db.testImg ;;
+  sql_table_name: demo_db2.testImg ;;
 
   dimension: image_source {
     type: string

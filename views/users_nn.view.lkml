@@ -1,5 +1,5 @@
 view: users_nn {
-  sql_table_name: demo_db.usersNN ;;
+  sql_table_name: demo_db2.usersNN ;;
   drill_fields: [id]
 
   dimension: id {

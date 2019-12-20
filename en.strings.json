@@ -12,7 +12,7 @@
     "value": "Translation for Comment"
   },
   "Inventory Item ID": {
-    "value": "Inventory Item IDAAAA",
+    "value": "Inventory Item ID \"aaa",
     "comment": "Bug Repro"
   },
   "My Other Key": "My Other Translation",

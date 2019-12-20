@@ -1,5 +1,5 @@
 view: persons {
-  sql_table_name: demo_db.persons ;;
+  sql_table_name: demo_db2.persons ;;
 
   dimension: age {
     type: number

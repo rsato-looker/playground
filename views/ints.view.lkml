@@ -1,5 +1,5 @@
 view: ints {
-  sql_table_name: demo_db.ints ;;
+  sql_table_name: demo_db2.ints ;;
 
   dimension: i {
     type: yesno
