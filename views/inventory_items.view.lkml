@@ -60,6 +60,11 @@ view: inventory_items {
     sql: ${TABLE}.sold_at ;;
   }
 
+  dimension: just_date {
+    type: number
+    sql: date_format(${TABLE}.sold_at,"%e") ;;
+  }
+
   dimension_group: duration {
     type: duration
     sql_start: ${created_date} ;;  # often this is a single database column

@@ -6,6 +6,8 @@ view: orders {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    value_format: "*00#"
+    html: <font size="3">{{rendered_value}}</font> ;;
   }
 
   dimension_group: created {

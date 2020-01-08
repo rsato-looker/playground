@@ -30,6 +30,7 @@ explore: inventory_items { hidden: yes}
 
 
 explore: order_items {
+  label: "order_items 😀"
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;

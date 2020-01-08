@@ -5,6 +5,7 @@ view: order_items {
   dimension: id {
     primary_key: yes
     type: number
+    #html: <font size="4">{{value}}</font> ;;
     sql: ${TABLE}.id ;;
   }
 
@@ -38,8 +39,8 @@ view: order_items {
   dimension: sale_price {
     type: number
     sql: ${TABLE}.sale_price ;;
-    html: {% if {{value}} > 50 %}
-          <b><font color="pink">{{value}}</font></b>
+    html: {% if {{value}} > 5 and {{order_items.returend_month._value}} == 2016 }
+          <font color="pink">{{value}}</font>
           {% else %}
           <font color="blue">{{value}}</font>
           {% endif %};;
