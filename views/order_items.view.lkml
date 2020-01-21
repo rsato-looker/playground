@@ -36,6 +36,12 @@ view: order_items {
     sql: ${TABLE}.returned_at ;;
   }
 
+  dimension: today {
+    type: date
+    sql: CURDATE() ;;
+    html: <a href="https://master.dev.looker.com/render/process/wd/1680/1/dashboards/3565.pdf?download=yes&filename=Test%20download%20{{value}}.pdf&title=Test%20download&longTables=false&pdf_paper_size=&pdf_landscape=false">Download</a> ;;
+  }
+
   dimension: sale_price {
     type: number
     sql: ${TABLE}.sale_price ;;

@@ -10,6 +10,8 @@ datagroup: rie_test_default_datagroup {
 
 persist_with: rie_test_default_datagroup
 
+explore: NDT_test {}
+
 explore: calendar_table {}
 
 explore: connection_reg_r3 {}
@@ -58,6 +60,12 @@ explore: order_items {
   join: derived_table_test {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${derived_table_test.products_id} ;;
+    relationship: many_to_one
+  }
+
+  join: derived_table_test2 {
+    type: left_outer
+    sql_on: ${users.city} = ${derived_table_test2.city} ;;
     relationship: many_to_one
   }
 }

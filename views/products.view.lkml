@@ -54,6 +54,10 @@ view: products {
     html: {% if {{products.category._value}} == "Dresses" %}
           <font color="pink">{{value}}%</font>
           {% endif %};;
+#     filters: {
+#           field: brand
+#           value: "-Speedo"
+#     }
     drill_fields: [id, item_name, inventory_items.count]
   }
 

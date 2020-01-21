@@ -17,12 +17,33 @@ view: orders {
       time,
       date,
       week,
+      day_of_week,
       month,
       quarter,
       year
     ]
     sql: ${TABLE}.created_at ;;
     html: <p style="color:blue">{{value}}</p> ;;
+  }
+
+
+  parameter: timeframe_picker {
+    label: "Date Granularity"
+    type: string
+    allowed_value: { value: "Date" }
+    allowed_value: { value: "Week" }
+    allowed_value: { value: "Month" }
+    default_value: "Date"
+  }
+
+  dimension: dynamic_timeframe {
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter timeframe_picker %} = 'Date' THEN ${orders.created_date}
+    WHEN {% parameter timeframe_picker %} = 'Week' THEN ${orders.created_week}
+    WHEN{% parameter timeframe_picker %} = 'Month' THEN ${orders.created_month}
+    END ;;
   }
 
   dimension: status {
@@ -44,6 +65,12 @@ view: orders {
   measure: count_users {
     type: count_distinct
     sql: ${user_id} ;;
+  }
+
+  measure: percent_of_total_order_count{
+    type: percent_of_total
+    value_format: "0.00"
+    sql: ${count} ;;
   }
 
 }
