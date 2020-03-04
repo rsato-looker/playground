@@ -1,11 +1,19 @@
 view: order_items {
-  sql_table_name: demo_db2.order_items ;;
-  drill_fields: [id]
+  #sql_table_name: demo_db2.order_items ;;
+sql_table_name: demo_db2.order_items ;;
+
+#   Dynamicly changing sql table
+#   sql_table_name: demo_db{% parameter tablename %}.order_items ;;
+#   drill_fields: [id]
+#
+#   parameter: tablename {
+#     type: number
+#   }
 
   dimension: id {
     primary_key: yes
     type: number
-    #html: <font size="4">{{value}}</font> ;;
+    html: <font size="1">{{value}}</font>;;
     sql: ${TABLE}.id ;;
   }
 
@@ -18,6 +26,8 @@ view: order_items {
 
   dimension: order_id {
     type: number
+    #html: <font size="10">{{value}}</font>;;
+    html: <p style="font-family:courier;">This is a paragraph.</p> ;;
     # hidden: yes
     sql: ${TABLE}.order_id ;;
   }
@@ -31,7 +41,8 @@ view: order_items {
       week,
       month,
       quarter,
-      year
+      year,
+      hour_of_day
     ]
     sql: ${TABLE}.returned_at ;;
   }
@@ -55,5 +66,10 @@ view: order_items {
   measure: count {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
+  }
+
+  measure: agg_test {
+    type: sum
+    sql: ${sale_price} * ${orders.user_id} ;;
   }
 }

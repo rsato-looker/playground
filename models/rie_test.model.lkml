@@ -2,6 +2,7 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/*.dashboard"
 
 datagroup: rie_test_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -66,6 +67,12 @@ explore: order_items {
   join: derived_table_test2 {
     type: left_outer
     sql_on: ${users.city} = ${derived_table_test2.city} ;;
+    relationship: many_to_one
+  }
+
+  join: category_only_10 {
+    type: left_outer
+    sql_on: ${products.category} = ${category_only_10.category_10} ;;
     relationship: many_to_one
   }
 }
