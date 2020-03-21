@@ -18,8 +18,12 @@ view: products {
 #         url: "/dashboards/3656?brand={{ value }}&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
 #      }
     link: {
-      label: "Drill Dashboard"
-      url: "/dashboards/3656?brand={{ value }}&Category={{ _filters['products.category'] | url_encode }}"
+      label: "takes the values of two separate fields and passes it to the next dashboard filters"
+      url: "/dashboards/3656?brand={{ value }}&Category={{ products.category._value }}"
+    }
+    link: {
+      label: "takes the value of the date filter in dashboardA and passes it into dashboardB"
+      url: "/dashboards/3656?date={{ _filters['orders.created_date'] | url_encode }}"
     }
     order_by_field: sort
     sql: ${TABLE}.brand ;;
@@ -107,6 +111,11 @@ view: products {
       field: category
       value: "%Pants%"
     }
+#     sql:
+#     CASE WHEN ${count} > 30
+#     THEN ${count} * 30
+#     ELSE ${count} * 100
+#     END ;;
     drill_fields: [category]
   }
   measure: avg {

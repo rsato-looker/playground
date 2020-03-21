@@ -27,6 +27,41 @@ view: inventory_items {
     sql: ${TABLE}.created_at ;;
   }
 
+  measure: max_created_date {
+    type: date
+    sql: max(${created_date}) ;;
+  }
+
+  measure: max_created_date_2 {
+    type: date
+    # sql: (max(date(${TABLE}.created_at))) ;;
+    sql: max(${created_date}) ;;
+  }
+
+  measure: max_created_datetime {
+    type: string
+    sql: (max(${TABLE}.created_at)) ;;
+
+  }
+
+  measure: min_created_date {
+    type: date
+    sql: min(${created_date}) ;;
+  }
+
+  measure: min_created_date_2 {
+    type: date
+    # sql: (max(date(${TABLE}.created_at))) ;;
+    sql: min(${created_date}) ;;
+  }
+
+  measure: min_created_datetime {
+    type: string
+    sql: (min(${TABLE}.created_at)) ;;
+
+  }
+
+
    dimension: new_time_dimension {
      type: date_time
      sql: ${TABLE}.created_at ;;

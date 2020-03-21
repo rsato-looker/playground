@@ -1,4 +1,5 @@
 view: orders {
+  label: "rrr"
   sql_table_name: demo_db2.orders ;;
   drill_fields: [id]
 
@@ -68,6 +69,7 @@ view: orders {
   measure: count_users {
     type: count_distinct
     sql: ${user_id} ;;
+    html: {{rendered_value}} ;;
   }
 
   measure: percent_of_total_order_count{

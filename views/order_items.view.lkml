@@ -66,6 +66,10 @@ sql_table_name: demo_db2.order_items ;;
   measure: count {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
+    link: {
+      label: "desired label name"
+      url: "{{ link }}&sorts=orders.id+desc"
+    }
   }
 
   measure: agg_test {

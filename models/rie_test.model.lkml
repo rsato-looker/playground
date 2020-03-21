@@ -85,10 +85,6 @@ explore: orders {
   }
 }
 
-explore: persons {}
-
-explore: products {}
-
 explore: schema_migrations {}
 
 explore: test_img {}

@@ -9,7 +9,6 @@
     type: looker_grid
     fields: [products.count, products.brand, products.category]
     pivots: [products.brand, products.category]
-    hidden_fields: [products.category]
     sorts: [products.brand desc, products.category]
     limit: 500
     query_timezone: America/Toronto
@@ -75,7 +74,6 @@
     type: looker_grid
     fields: [products.brand, products.category, products.count]
     pivots: [products.brand, products.category]
-    hidden_fields: [products.category]
     sorts: [products.brand, products.category]
     limit: 500
     query_timezone: America/Toronto
