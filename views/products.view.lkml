@@ -25,6 +25,14 @@ view: products {
       label: "takes the value of the date filter in dashboardA and passes it into dashboardB"
       url: "/dashboards/3656?date={{ _filters['orders.created_date'] | url_encode }}"
     }
+    link: {
+      label: "take the values of the field you drill on and passes into the explore filter"
+      url: "/explore/rie_test/order_items?fields=users.state,users.count,products.brand&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
+    }
+    link: {
+      label: "take the value of the filters in dashboardA and passes it into the explore"
+      url: "/explore/rie_test/order_items?fields=users.state,users.count,products.brand&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
+    }
     order_by_field: sort
     sql: ${TABLE}.brand ;;
   }
