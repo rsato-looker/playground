@@ -19,6 +19,8 @@ explore: connection_reg_r3 {}
 
 explore: epoch_test {}
 
+explore:sme_derived_table {}
+
 explore: events {
   join: users {
     type: left_outer
