@@ -1,6 +1,26 @@
 view: users {
   sql_table_name: demo_db2.users ;;
-  drill_fields: [id]
+
+  filter: state_filter {
+    type: string
+    suggest_dimension: state
+  }
+
+  filter: age_filter {
+    type: number
+  }
+
+  parameter: filter_logic {
+    type: unquoted
+    allowed_value: {
+      label: "OR"
+      value: "OR"
+    }
+    allowed_value: {
+      label: "AND"
+      value: "AND"
+    }
+  }
 
   dimension: id {
     primary_key: yes
@@ -16,12 +36,26 @@ view: users {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    link: {
+      label: "Drill by City dummy"
+      #url: "/explore/rie_test/order_items?fields=users.city,users.state,users.count&sorts=users.city"
+      url: "{{ dummy_link._link }}&sorts=users.age+desc"
+    }
+  }
+
+  measure: dummy_link {
+    type: number
+    sql: 1=1 ;;
+    drill_fields: [city,state,count,orders.count]
   }
 
   dimension: country {
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
+  }
+  set: user_details {
+    fields: [id, city, state, country]
   }
 
   dimension_group: created {
@@ -31,11 +65,22 @@ view: users {
       time,
       date,
       week,
+      day_of_week,
       month,
       quarter,
       year
     ]
     sql: ${TABLE}.created_at ;;
+  }
+
+  dimension: for_vis {
+    type: date_week
+    sql: ${created_week} ;;
+  }
+
+  dimension: for_vis_2 {
+    type: date_week
+    sql: date_add(${created_week}, interval -1 day) ;;
   }
 
   dimension: email {
@@ -45,6 +90,7 @@ view: users {
 
   dimension: first_name {
     type: string
+    #hidden: yes
     sql: ${TABLE}.first_name ;;
   }
 

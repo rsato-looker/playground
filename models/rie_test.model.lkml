@@ -11,7 +11,18 @@ datagroup: rie_test_default_datagroup {
 
 persist_with: rie_test_default_datagroup
 
-explore: NDT_test {}
+explore: users {
+  always_filter: {
+    filters: [age_filter: "35",state_filter: "New York",filter_logic: "OR"]}
+  sql_always_where:
+  {% condition users.state_filter %} users.state {% endcondition %}
+  {% parameter users.filter_logic %}
+  {% condition users.age_filter %} users.age {% endcondition %};;
+}
+
+explore: ndt_2 {}
+
+explore: NDT_name_changed {}
 
 explore: calendar_table {}
 
@@ -36,6 +47,8 @@ explore: inventory_items { hidden: yes}
 
 explore: order_items {
   label: "order_items 😀"
+
+
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
@@ -49,6 +62,7 @@ explore: order_items {
   }
 
   join: users {
+
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
@@ -59,6 +73,12 @@ explore: order_items {
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
+
+#   join: exteded_product {
+#     type: left_outer
+#     sql_on: ${inventory_items.product_id} = ${exteded_product.id} ;;
+#     relationship: many_to_one
+#   }
 
   join: derived_table_test {
     type: left_outer
@@ -99,6 +119,22 @@ explore: user_data {
   }
 }
 
-explore: users {}
-
 explore: users_nn {}
+
+explore: products {
+    #   sql_always_where: 1=1      {% assign counter = 0 %}
+    #   {% if products.brand._is_filtered %}
+    #   {% if counter > 0 %} OR {% else %} AND ({% endif %}
+    #   {% assign counter = counter | plus:1 %}
+    #   {% condition products.brand %} ${products.brand} {% endcondition %}
+    #   {% endif %}
+    #
+    #   {% if products.category._is_filtered %}
+    #   {% if counter > 0 %} OR {% else %} AND ({% endif %}
+    #   {% assign counter = counter | plus:1 %}
+    #   {% condition products.category %} ${products.category} {% endcondition %}
+    #   {% endif %}
+    #
+    #   {% if counter > 0 %} ) {% endif %}
+    #   ;;
+  }

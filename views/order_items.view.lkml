@@ -1,6 +1,7 @@
 view: order_items {
   #sql_table_name: demo_db2.order_items ;;
-sql_table_name: demo_db2.order_items ;;
+#sql_table_name: demo_db2.order_items ;;
+  sql_table_name: demo_db.order_items ;;
 
 #   Dynamicly changing sql table
 #   sql_table_name: demo_db{% parameter tablename %}.order_items ;;
@@ -27,7 +28,7 @@ sql_table_name: demo_db2.order_items ;;
   dimension: order_id {
     type: number
     #html: <font size="10">{{value}}</font>;;
-    html: <p style="font-family:courier;">This is a paragraph.</p> ;;
+    #html: <p style="font-family:courier;">This is a paragraph.</p> ;;
     # hidden: yes
     sql: ${TABLE}.order_id ;;
   }
@@ -56,11 +57,13 @@ sql_table_name: demo_db2.order_items ;;
   dimension: sale_price {
     type: number
     sql: ${TABLE}.sale_price ;;
-    html: {% if {{value}} > 5 and {{order_items.returend_month._value}} == 2016 }
-          <font color="pink">{{value}}</font>
-          {% else %}
-          <font color="blue">{{value}}</font>
-          {% endif %};;
+#     html: {% if {{value}} > 5 and {{order_items.returend_month._value}} == 2016 }
+#           <font color="pink">{{value}}</font>
+#           {% else %}
+#           <font color="blue">{{value}}</font>
+#           {% endif %};;
+      html: {{rendered_value}} ≦ x < ${count} ;;
+      #html: {{rendered_value}} ;;
   }
 
   measure: count {

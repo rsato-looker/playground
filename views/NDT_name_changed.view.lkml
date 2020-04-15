@@ -1,7 +1,7 @@
 # If necessary, uncomment the line below to include explore_source.
 # include: "rie_test.model.lkml"
 
-view: NDT_test {
+view: NDT_name_changed {
   derived_table: {
     explore_source: order_items {
       column: created_month { field: orders.created_month }

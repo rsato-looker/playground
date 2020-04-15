@@ -112,12 +112,12 @@ view: inventory_items {
     drill_fields: [id, products.id, products.item_name, order_items.count]
   }
 
-  dimension: dashboard_link {
-    type: string
-    sql: 1 ;;
-    html: <a href = "https://optimizely.looker.com/dashboards/378?State={{ _filters['users.state'] | url_encode }}&Age={{ _filters['users.age'] | url_encode }}"><font size="4"> Impressions/MUVs(Billing period)</font></a><br>
-<a href = "https://optimizely.looker.com/dashboards/377?State={{ _filters['users.state'] | url_encode }}&Age={{ _filters['users.age'] | url_encode }}"><font size="4"> Experiment Impressions</font></a><br>
-<a href = "https://optimizely.looker.com/dashboards/214?State={{ _filters['users.state'] | url_encode }}&Age={{ _filters['users.age'] | url_encode }}"><font size="4"> Benchmarks</font></a> ;;
-
-  }
+#   dimension: dashboard_link {
+#     type: string
+#     sql: 1 ;;
+#     html: <a href = "https://optimizely.looker.com/dashboards/378?State={{ _filters['users.state'] | url_encode }}&Age={{ _filters['users.age'] | url_encode }}"><font size="4"> Impressions/MUVs(Billing period)</font></a><br>
+# <a href = "https://optimizely.looker.com/dashboards/377?State={{ _filters['users.state'] | url_encode }}&Age={{ _filters['users.age'] | url_encode }}"><font size="4"> Experiment Impressions</font></a><br>
+# <a href = "https://optimizely.looker.com/dashboards/214?State={{ _filters['users.state'] | url_encode }}&Age={{ _filters['users.age'] | url_encode }}"><font size="4"> Benchmarks</font></a> ;;
+#
+#   }
 }
