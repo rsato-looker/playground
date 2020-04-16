@@ -9,7 +9,7 @@ datagroup: rie_test_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-persist_with: rie_test_default_datagroup
+#persist_with: rie_test_default_datagroup
 
 explore: users {
   always_filter: {
@@ -120,6 +120,8 @@ explore: user_data {
 }
 
 explore: users_nn {}
+
+explore: notpersisted {}
 
 explore: products {
     #   sql_always_where: 1=1      {% assign counter = 0 %}

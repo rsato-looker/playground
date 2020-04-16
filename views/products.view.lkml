@@ -24,7 +24,7 @@ view: products {
     #html: <b><a href="https://www.google.com/search?q={{value}}">{{ value }}</a></b> ;;
 #      link: {
 #        label: "Google brand name"
-#        url: "https://www.google.com/"
+#        #url: "https://www.google.com/"
 #        icon_url: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
 #         url: "/dashboards/3656?brand={{ value }}&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
 #      }
