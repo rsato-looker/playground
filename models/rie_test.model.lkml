@@ -20,6 +20,10 @@ explore: users {
   {% condition users.age_filter %} users.age {% endcondition %};;
 }
 
+explore: access_test {
+  cancel_grouping_fields: [access_test.brand]
+}
+
 explore: ndt_2 {}
 
 explore: NDT_name_changed {}

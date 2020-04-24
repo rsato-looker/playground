@@ -5,7 +5,7 @@ view: derived_table_test2 {
         SELECT
           users.city  AS "city",
           COUNT(DISTINCT orders.id ) AS "count",
-          orders.created_date as date
+          orders.created_at as created_at
         FROM order_items  AS order_items
         LEFT JOIN orders  AS orders ON order_items.order_id = orders.id
         LEFT JOIN users  AS users ON orders.user_id = users.id
@@ -47,6 +47,12 @@ view: derived_table_test2 {
     #html: <a href="/dashboards/dashboardnumber?NameFilter={{ value }}&Filter2=filter_value">{{ value }}</a>  ;;
     #suggest_dimension: city
     #primary_key: yes
+  }
+
+  dimension_group: date {
+    type: time
+    timeframes: [date]
+    sql: ${TABLE}.created_at ;;
   }
 
   dimension: orders_count {

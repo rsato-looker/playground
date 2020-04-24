@@ -46,7 +46,8 @@ view: products {
 #     }
     #order_by_field: sort
     sql: ${TABLE}.brand ;;
-  }
+    #html:<div style="border:3px solid black; width:100%; height:100%" /div>;;
+    }
 
 #   dimension: sort {
 #     type: number
@@ -108,7 +109,11 @@ view: products {
 #           field: brand
 #           value: "-Speedo"
 #     }
-      drill_fields: [id, item_name, inventory_items.count]
+      link: {
+        label: "Drill Look"
+        url:"/looks/10852?&&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
+      }
+      #drill_fields: [id, item_name, inventory_items.count]
 
     }
 
