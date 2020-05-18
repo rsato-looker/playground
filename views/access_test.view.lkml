@@ -21,10 +21,10 @@ derived_table: {
   dimension: brand {
     type: string
     sql:　{% if _user_attributes['hakuhodo_filter'] == 'admin' %}
-             '1'
-          {% else %}
-                ${TABLE}.brand
-          {% endif %};;
+    '1'
+    {% else %}
+    ${TABLE}.brand
+    {% endif %};;
 #       sql:  ${TABLE}.brand;;
   }
 

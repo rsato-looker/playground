@@ -1,11 +1,14 @@
 view: custom_order_items {
   derived_table: {
+    publish_as_db_view: yes
     sql:
       SELECT
         id,
         SUM(retail_price) AS sum_retail
       FROM
-        public.products ;;
+        products ;;
+    sql_trigger_value: SELECT CURDATE() ;;
+    indexes: ["id"]
   }
 
   dimension: sum_retail {

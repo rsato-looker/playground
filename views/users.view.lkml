@@ -43,6 +43,12 @@ view: users {
     }
   }
 
+  dimension: img {
+    type: string
+    sql: 1 ;;
+    html: <img src="https://i.imgur.com/myZOgKl.png" /> ;;
+  }
+
   measure: dummy_link {
     type: number
     sql: 1=1 ;;

@@ -1,7 +1,33 @@
 view: orders {
-  #sql_table_name: demo_db2.orders ;;
-  sql_table_name: demo_db.orders ;;
+  sql_table_name: demo_db2.orders ;;
+  #sql_table_name: demo_db.orders ;;
   drill_fields: [id]
+
+  filter: previous_period_filter {
+    type: date
+    description: "Use this filter for period analysis"
+    sql: ${previous_period} IS NOT NULL ;;
+  }
+
+  # For Amazon Redshift
+  # ${created_raw} is the timestamp dimension we are building our reporting period off of
+  dimension: previous_period {
+    type: string
+    description: "The reporting period as selected by the Previous Period Filter"
+    sql:
+      CASE
+        WHEN {% date_start previous_period_filter %} is not null AND {% date_end previous_period_filter %} is not null /* date ranges or in the past x days */
+          THEN
+            CASE
+              WHEN ${created_raw} >=  {% date_start previous_period_filter %}
+                AND ${created_raw} <= {% date_end previous_period_filter %}
+                THEN 'This Period'
+              WHEN ${created_raw} >= DATE_ADD(date,-1*DATEDIFF({% date_start previous_period_filter %}, {% date_end previous_period_filter %} ) + 1, DATE_ADD(date,-1,{% date_start previous_period_filter %} ) )
+                AND ${created_raw} <= DATE_ADD(date, INTERVAL -1,{% date_start previous_period_filter %} )
+                THEN 'Previous Period'
+            END
+          END ;;
+  }
 
   dimension: id {
     primary_key: yes
@@ -37,8 +63,13 @@ view: orders {
     #html: <p style="color:blue">{{value}}</p> ;;
   }
 
-  dimension_group: date {
-    type: time
+  dimension: is_before_mtd {
+    type: yesno
+    sql: ( ${TABLE}.created_at not between DATE_FORMAT(NOW() ,'%Y-%M-01') AND NOW() ) ;;
+  }
+  dimension: is_before_ytd {
+    type: yesno
+    sql: ( ${TABLE}.created_at not between DATE_FORMAT(NOW() ,'%Y-01-01') AND NOW() ) ;;
   }
 
   dimension: week {

@@ -1,7 +1,7 @@
 view: order_items {
   #sql_table_name: demo_db2.order_items ;;
-#sql_table_name: demo_db2.order_items ;;
-  sql_table_name: demo_db.order_items ;;
+sql_table_name: demo_db2.order_items ;;
+  #sql_table_name: demo_db.order_items ;;
 
 #   Dynamicly changing sql table
 #   sql_table_name: demo_db{% parameter tablename %}.order_items ;;
@@ -11,11 +11,12 @@ view: order_items {
 #     type: number
 #   }
 
-  dimension: id {
+  dimension: _id {
     primary_key: yes
     type: number
     html: <font size="1">{{value}}</font>;;
     sql: ${TABLE}.id ;;
+    hidden: yes
   }
 
   dimension: inventory_item_id {
@@ -62,13 +63,14 @@ view: order_items {
 #           {% else %}
 #           <font color="blue">{{value}}</font>
 #           {% endif %};;
-      html: {{rendered_value}} ≦ x < ${count} ;;
+      #html: {{rendered_value}} ≦ x < ${count} ;;
       #html: {{rendered_value}} ;;
+      html: {{ order_items._id._value}} ;;
   }
 
   measure: count {
     type: count
-    drill_fields: [id, orders.id, inventory_items.id]
+    #drill_fields: [id, orders.id, inventory_items.id]
     link: {
       label: "desired label name"
       url: "{{ link }}&sorts=orders.id+desc"

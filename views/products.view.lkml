@@ -1,6 +1,6 @@
 view: products {
   sql_table_name: demo_db2.products ;;
-  drill_fields: [id]
+  #drill_fields: [id]
 
   dimension: id {
     primary_key: yes
@@ -20,6 +20,7 @@ view: products {
 
   dimension: brand {
     type: string
+    suggestions: ["10 Deep","180s","1veMoon"]
     #hidden: yes
     #html: <b><a href="https://www.google.com/search?q={{value}}">{{ value }}</a></b> ;;
 #      link: {
@@ -47,7 +48,7 @@ view: products {
     #order_by_field: sort
     sql: ${TABLE}.brand ;;
     #html:<div style="border:3px solid black; width:100%; height:100%" /div>;;
-    }
+  }
 
 #   dimension: sort {
 #     type: number
@@ -70,6 +71,7 @@ view: products {
   }
 
   dimension: item_name {
+    tags: ["phone"]
     type: string
     sql: ${TABLE}.item_name ;;
   }
@@ -91,14 +93,19 @@ view: products {
 
   dimension: test {
     type: string
-    sql:
-          case when
-          ${category} like '%Sleep%Lounge%' then "yes"
-          then "no";;
-#       html:  {% if category._value == "Jeans" %}
-#           {{value}}
-#           {% endif %};;
+    sql: 1 ;;
+      html:  {% if category._value %}
+          <font color="pink"> {{ category._value }} </font>
+          {% endif %};;
     }
+
+#     dimension: test_2 {
+#       type: string
+#       link: {
+#         label: "Link By Media Dashboard"
+#         url: "{{test._value}}"
+#       }
+#     }
 
     measure: count {
       type: count
