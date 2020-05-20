@@ -109,6 +109,7 @@ view: inventory_items {
 
   measure: count {
     type: count
+    value_format: "\"฿\"0"
     drill_fields: [id, products.id, products.item_name, order_items.count]
   }
 
