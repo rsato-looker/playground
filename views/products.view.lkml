@@ -20,31 +20,31 @@ view: products {
 
   dimension: brand {
     type: string
-    suggestions: ["10 Deep","180s","1veMoon"]
+    #suggestions: ["10 Deep","180s","1veMoon"]
     #hidden: yes
     #html: <b><a href="https://www.google.com/search?q={{value}}">{{ value }}</a></b> ;;
-#      link: {
-#        label: "Google brand name"
-#        #url: "https://www.google.com/"
-#        icon_url: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-#         url: "/dashboards/3656?brand={{ value }}&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
-#      }
-#     link: {
-#       label: "takes the values of two separate fields and passes it to the next dashboard filters"
-#       url: "/dashboards/3656?brand={{ value }}&Category={{ products.category._value }}"
-#     }
-#     link: {
-#       label: "takes the value of the date filter in dashboardA and passes it into dashboardB"
-#       url: "/dashboards/3656?date={{ _filters['orders.created_date'] | url_encode }}"
-#     }
-#     link: {
-#       label: "take the values of the field you drill on and passes into the explore filter"
-#       url: "/explore/rie_test/order_items?fields=users.state,users.count,products.brand&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
-#     }
-#     link: {
-#       label: "take the value of the filters in dashboardA and passes it into the explore"
-#       url: "/explore/rie_test/order_items?fields=users.state,users.count,products.brand&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
-#     }
+     link: {
+       label: "Google brand name"
+       #url: "https://www.google.com/"
+       icon_url: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+        url: "/dashboards/3656?brand={{ value }}&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
+     }
+    link: {
+      label: "takes the values of two separate fields and passes it to the next dashboard filters"
+      url: "/dashboards/3656?brand={{ value }}&Category={{ products.category._value }}"
+    }
+    link: {
+      label: "takes the value of the date filter in dashboardA and passes it into dashboardB"
+      url: "/dashboards/3656?date={{ _filters['orders.created_date'] | url_encode }}"
+    }
+    link: {
+      label: "take the values of the field you drill on and passes into the explore filter"
+      url: "/explore/rie_test/order_items?fields=users.state,users.count,products.brand&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
+    }
+    link: {
+      label: "take the value of the filters in dashboardA and passes it into the explore"
+      url: "/explore/rie_test/order_items?fields=users.state,users.count,products.brand&f[products.brand]={{ _filters['products.brand'] | url_encode }}"
+    }
     #order_by_field: sort
     sql: ${TABLE}.brand ;;
     #html:<div style="border:3px solid black; width:100%; height:100%" /div>;;
@@ -68,6 +68,29 @@ view: products {
   dimension: department {
     type: string
     sql: ${TABLE}.department ;;
+  }
+
+  parameter: filter_products {
+    type: unquoted
+    allowed_value: {
+      label: "brand"
+      value: "brand"
+    }
+    allowed_value: {
+      label: "category"
+      value: "category"
+    }
+  }
+
+  dimension: values {
+    type: string
+    sql: {% if filter_products._parameter_value == 'brand' %}
+          ${brand}
+         {% elsif filter_products._parameter_value == 'category' %}
+          ${category}
+         {% else %}
+          1=1
+         {% endif %};;
   }
 
   dimension: item_name {

@@ -102,6 +102,17 @@ view: orders {
     sql: ${TABLE}.status ;;
   }
 
+  dimension: inbound {
+    type: string
+    sql: ${id};;
+#     html: <div class="vis">
+#    <div class="vis-single-value" style="font-size:80%; color:#FFFFFF; background-color:#5F9EA0">
+#    <font color="#5A2FC2"><center><b>Inbound</b><p></p></font></div>
+#    </div>      ;;
+    html: <div class="vis" style="font-size:80%; color:#FFFFFF; background-color:#5F9EA0">
+    <font color="#5A2FC2"><center><b>Inbound {{rendered_value}}</b><p></p></font></div>  ;;
+  }
+
   measure: count_com {
     type: count
     filters: {

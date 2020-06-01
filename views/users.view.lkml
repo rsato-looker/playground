@@ -46,7 +46,7 @@ view: users {
   dimension: img {
     type: string
     sql: 1 ;;
-    html: <img src="https://i.imgur.com/myZOgKl.png" /> ;;
+    html: <img src="https://i.imgur.com/myZOgKl.png" width="1200" /> ;;
   }
 
   measure: dummy_link {

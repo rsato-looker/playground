@@ -9,9 +9,17 @@ view: derived_table_test2 {
         FROM order_items  AS order_items
         LEFT JOIN orders  AS orders ON order_items.order_id = orders.id
         LEFT JOIN users  AS users ON orders.user_id = users.id
-        where {% condition city_filter %} city {% endcondition %}
+        where true
+        {% if city_filter_1._is_filtered %}
+        OR {% condition city_filter_1 %} city {% endcondition %}
+　      {% endif %}
         GROUP BY 1
        ;;
+#       sql: select * from order_items
+#         {% condition city_filter_1 %} city {% endcondition %}
+#         OR {% condition city_filter_2 %} city {% endcondition %}
+#             where {% assign index = 1 %}
+#                   {% condition city_filter_[index] %} city {% endcondition %};;
   }
 
 #   derived_table: {
@@ -29,9 +37,17 @@ view: derived_table_test2 {
 #        ;;
 #   }
 
-  filter: city_filter {
+  filter: city_filter_1 {
     type: string
-    sql: {% condition city_filter %}${city}{% endcondition %};;
+#     sql: {% condition city_filter_1 %}${city}{% endcondition %};;
+    #suggest_explore: user -- no needed
+    suggest_dimension: users.city
+    #suggestions: ["Complete", "Pending", "Cancelled"] - doesn't work
+  }
+
+  filter: city_filter_2 {
+    type: string
+#     sql: {% condition city_filter_1 %}${city}{% endcondition %};;
     #suggest_explore: user -- no needed
     suggest_dimension: users.city
     #suggestions: ["Complete", "Pending", "Cancelled"] - doesn't work
