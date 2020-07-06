@@ -9,6 +9,16 @@ view: orders {
     sql: ${previous_period} IS NOT NULL ;;
   }
 
+  filter: date_filter {
+    type: date
+  }
+
+  dimension: date_diff {
+    type: duration_day
+    sql_start: {% date_start date_filter %} ;;
+    sql_end: {% date_end date_filter %} ;;
+  }
+
   # For Amazon Redshift
   # ${created_raw} is the timestamp dimension we are building our reporting period off of
   dimension: previous_period {
@@ -41,6 +51,39 @@ view: orders {
   measure: XXX {
     type: number
     sql: ${status} + ${id} ;;
+  }
+
+  parameter: admission_date_drill_down {
+    type: unquoted
+    allowed_value: {
+      label: "Month"
+      value: "admission_month"
+    }
+    allowed_value: {
+      label: "Quarter"
+      value: "admission_quarter"
+    }
+    allowed_value: {
+      label: "Year"
+      value: "admission_year"
+    }
+  }
+
+#   dimension: report_by_admission_date {
+#     sql: {% if admission_date_drill_down._parameter_value == 'admission_month' %}
+#       ${created_month}
+#       {% elsif admission_date_drill_down._parameter_value == 'admission_quarter' %}
+#       CONCAT(${created_year}, "-", ${created_quarter_of_year})
+#       {% elsif admission_date_drill_down._parameter_value == 'admission_year' %}
+#       ${created_year}
+#       {% else %}
+#       ${created_date}
+#       {% endif %};;
+#   }
+
+  dimension: month {
+    type: date_month
+    sql: ${created_month} ;;
   }
 
   dimension_group: created {
@@ -110,7 +153,7 @@ view: orders {
 #    <font color="#5A2FC2"><center><b>Inbound</b><p></p></font></div>
 #    </div>      ;;
     html: <div class="vis" style="font-size:80%; color:#FFFFFF; background-color:#5F9EA0">
-    <font color="#5A2FC2"><center><b>Inbound {{rendered_value}}</b><p></p></font></div>  ;;
+      <font color="#5A2FC2"><center><b>Inbound {{rendered_value}}</b><p></p></font></div>  ;;
   }
 
   measure: count_com {

@@ -2,6 +2,17 @@ view: inventory_items {
   sql_table_name: demo_db2.inventory_items ;;
   drill_fields: [id]
 
+  parameter: f_lab_up_val {
+    type: number
+  }
+
+
+  dimension: result_value_num {
+    sql: ${TABLE}.product_id;;
+    html: {% assign max_label = f_lab_up_val._parameter_value | plus: 0 %}
+      ;;
+  }
+
   dimension: id {
     primary_key: yes
     type: number
@@ -90,6 +101,7 @@ view: inventory_items {
       week,
       month,
       quarter,
+      day_of_year,
       year
     ]
     sql: ${TABLE}.sold_at ;;

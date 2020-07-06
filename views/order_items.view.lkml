@@ -20,7 +20,7 @@ sql_table_name: demo_db2.order_items ;;
   }
 
   dimension: inventory_item_id {
-    label: "Inventory Item ID"
+    #label: "Inventory Item ID"
     type: number
     # hidden: yes
     sql: ${TABLE}.inventory_item_id ;;
