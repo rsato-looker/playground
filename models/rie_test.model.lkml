@@ -11,6 +11,10 @@ datagroup: rie_test_default_datagroup {
 
 #persist_with: rie_test_default_datagroup
 
+explore: redbull_test {}
+
+explore: testing_dimensionalize_measure {}
+
 explore: users {
   always_filter: {
     filters: [age_filter: "35",state_filter: "New York",filter_logic: "OR"]}

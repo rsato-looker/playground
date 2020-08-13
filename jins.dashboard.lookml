@@ -14,12 +14,16 @@
       sorts: [inventory_items.id]
       limit: 500
       query_timezone: America/Toronto
+      hidden_fields: []
+      y_axes: []
     - model: david_snowflake_ecom
       explore: inventory_items
       type: table
       fields: [inventory_items.id, distribution_centers.name]
       limit: 500
       query_timezone: America/Toronto
+      hidden_fields: []
+      y_axes: []
       join_fields:
       - field_name: inventory_items.id
         source_field_name: inventory_items.id
@@ -43,6 +47,7 @@
     conditional_formatting_include_nulls: false
     hidden_fields: [products.avg]
     type: looker_grid
+    y_axes: []
     pivots: [products.brand]
     dynamic_fields: [{table_calculation: calculation_1, label: Calculation 1, expression: "${products.avg}*100",
         value_format: !!null '', value_format_name: !!null '', _kind_hint: measure,
@@ -71,6 +76,12 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
+    hidden_fields: []
+    y_axes: []
+    note_state: collapsed
+    note_display: below
+    note_text: this is not merged result
+    listen: {}
     row: 0
     col: 16
     width: 8

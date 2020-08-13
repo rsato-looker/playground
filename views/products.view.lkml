@@ -22,7 +22,7 @@ view: products {
     type: string
     #suggestions: ["10 Deep","180s","1veMoon"]
     #hidden: yes
-    #html: <b><a href="https://www.google.com/search?q={{value}}">{{ value }}</a></b> ;;
+    html: <b><a href="https://www.google.com/search?q={{value}}">{{ value }}</a></b> ;;
     # link: {
     #   label: "Google brand name"
     #   #url: "https://www.google.com/"

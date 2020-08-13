@@ -200,7 +200,7 @@ view: orders {
   measure: count_users {
     type: count_distinct
     sql: ${user_id} ;;
-    html: {{rendered_value}} ;;
+    html: <b> {{rendered_value}} </b> ;;
   }
 
   measure: percent_of_total_order_count{
