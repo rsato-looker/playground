@@ -208,4 +208,18 @@ view: orders {
     value_format: "0.00"
     sql: ${count} ;;
   }
+
+  measure: persen_sales {
+    type: percent_of_total
+    sql: ${count} ;;
+    value_format: "0.00\%"
+    html: {% if value >  10  %}
+              <p style="color:white;background-color: #4AF623; font-size:100%; text-align:center">{{rendered_value}}</p>
+          {% elsif value < 2 %}
+              <p style="color:white;background-color: #FF2E2E; font-size:100%; text-align:center">{{rendered_value}}</p>
+          {% else %}
+              <p style="color:black;font-size:100%; text-align:center">{{rendered_value}}</p>
+          {% endif %}
+          ;;
+  }
 }

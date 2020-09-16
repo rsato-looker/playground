@@ -18,11 +18,28 @@ view: products {
 #     sql: {% condition brand_filter %} ${brand} {% endcondition %} ;;
 #   }
 
+  dimension: filter_test {
+    label: "イベント種別"
+    description: "覇者の塔や裏覇者の塔などの種別"
+    type: string
+    case: {
+      when: {
+        label: "覇者の塔"
+        sql: ${rank} = 1 ;;
+      }
+      when: {
+        label: "裏覇者の塔"
+        sql: ${rank} = 2 ;;
+      }
+    }
+  }
+
   dimension: brand {
     type: string
     #suggestions: ["10 Deep","180s","1veMoon"]
     #hidden: yes
-    html: <b><a href="https://www.google.com/search?q={{value}}">{{ value }}</a></b> ;;
+    html: {{value}} <br> ~;;
+    #html: <b><a href="https://www.google.com/search?q={{value}}">{{ value }}</a></b> ;;
     # link: {
     #   label: "Google brand name"
     #   #url: "https://www.google.com/"
