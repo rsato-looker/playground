@@ -86,6 +86,21 @@ view: products {
     }
   }
 
+  dimension: filter_test_5 {
+    description: "覇者の塔や裏覇者の塔などの種別"
+    type: string
+    case: {
+      when: {
+        label: "覇者の塔"
+        sql: ${rank} = 1 ;;
+      }
+      when: {
+        label: "裏覇者の塔"
+        sql: ${rank} = 2 ;;
+      }
+    }
+  }
+
   dimension: brand {
     type: string
     #suggestions: ["10 Deep","180s","1veMoon"]
