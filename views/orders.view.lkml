@@ -13,6 +13,24 @@ view: orders {
     type: date
   }
 
+  dimension: status_case {
+    case: {
+      when: {
+        sql: ${TABLE}.status = 0 ;;
+        label: "pending"
+      }
+      when: {
+        sql: ${TABLE}.status = 1 ;;
+        label: "complete"
+      }
+      when: {
+        sql: ${TABLE}.status = 2 ;;
+        label: "pending"
+      }
+      else: "unknown"
+    }
+  }
+
   dimension: date_diff {
     type: duration_day
     sql_start: {% date_start date_filter %} ;;

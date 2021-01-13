@@ -71,10 +71,24 @@ sql_table_name: demo_db2.order_items ;;
   measure: count {
     type: count
     #drill_fields: [id, orders.id, inventory_items.id]
+    # link: {
+    #   label: "desired label name"
+    #   url: "{{ link }}&sorts=orders.id+desc"
+    # }
+  }
+
+  measure: count_2 {
+    type: count
     link: {
-      label: "desired label name"
-      url: "{{ link }}&sorts=orders.id+desc"
+      label: "desird label name"
+      url: "google.com"
+#       icon_url : "url_of_an_image_file"
     }
+    # html: <div> {{ inventory_item_id._rendered_value}} </div>
+    #   <div> {{ order_id._rendered_value}} </div>;;
+    html: {{ inventory_item_id._rendered_value}} <br>
+      {{ rendered_value}} ;;
+    #drill_fields: [id, inventory_items.id, orders.id]
   }
 
   measure: agg_test {
