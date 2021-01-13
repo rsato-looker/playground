@@ -45,6 +45,15 @@ view: derived_table_test2 {
     #suggestions: ["Complete", "Pending", "Cancelled"] - doesn't work
   }
 
+  filter: date {
+    type: date
+    convert_tz: no
+#     sql: {% condition city_filter_1 %}${city}{% endcondition %};;
+    #suggest_explore: user -- no needed
+    #suggest_dimension: users.city
+    #suggestions: ["Complete", "Pending", "Cancelled"] - doesn't work
+  }
+
   filter: city_filter_2 {
     type: string
 #     sql: {% condition city_filter_1 %}${city}{% endcondition %};;
