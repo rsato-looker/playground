@@ -34,6 +34,73 @@ view: products {
     }
   }
 
+  dimension: filter_test2 {
+    label: "イベント種別 2"
+    description: "覇者の塔や裏覇者の塔などの種別"
+    type: string
+    case: {
+      when: {
+        label: "覇者の塔"
+        sql: ${rank} = 1 ;;
+      }
+      when: {
+        label: "裏覇者の塔"
+        sql: ${rank} = 2 ;;
+      }
+      when: {
+        label: "english"
+        sql: ${rank} = 2 ;;
+      }
+      when: {
+        label: "special chars § @ Å"
+        sql: ${rank} = 2 ;;
+      }
+    }
+  }
+
+  dimension: filter_test3 {
+    type: string
+    case: {
+      when: {
+        label: "english"
+        sql: ${rank} = 2 ;;
+      }
+      when: {
+        label: "more english"
+        sql: ${rank} = 2 ;;
+      }
+    }
+  }
+
+  dimension: filter_test4 {
+    type: string
+    case: {
+      when: {
+        label: "special chars § @ Å"
+        sql: ${rank} = 2 ;;
+      }
+      when: {
+        label: "ä Õ ą "
+        sql: ${rank} = 2 ;;
+      }
+    }
+  }
+
+  dimension: filter_test_5 {
+    description: "覇者の塔や裏覇者の塔などの種別"
+    type: string
+    case: {
+      when: {
+        label: "覇者の塔"
+        sql: ${rank} = 1 ;;
+      }
+      when: {
+        label: "裏覇者の塔"
+        sql: ${rank} = 2 ;;
+      }
+    }
+  }
+
   dimension: brand {
     type: string
     #suggestions: ["10 Deep","180s","1veMoon"]
